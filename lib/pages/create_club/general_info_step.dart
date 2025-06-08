@@ -15,8 +15,8 @@ class GeneralInfoStep extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.network(
-          'https://elements-resized.envatousercontent.com/elements-preview-images/de2390c8-2f3a-4779-a7c1-8710252449a5?w=632&cf_fit=scale-down&q=85&format=auto&s=f0e8ef1b854a0bd443fa89358fdc2592dca0378929c175d8ba5fb243522b3686',
+        Image.asset(
+          'assets/new_club_background.jpg',
           height: 300,
           width: double.infinity,
           fit: BoxFit.cover,
@@ -39,6 +39,15 @@ class GeneralInfoStep extends StatelessWidget {
                 decoration: InputDecoration(labelText: 'Адрес'),
                 onChanged: (value) {
                   newClub.address = value;
+                  onChange(newClub);
+                },
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                initialValue: newClub.city,
+                decoration: InputDecoration(labelText: 'Град'),
+                onChanged: (value) {
+                  newClub.city = value;
                   onChange(newClub);
                 },
               ),

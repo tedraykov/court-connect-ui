@@ -178,6 +178,7 @@ class AddFacilityCard extends StatelessWidget {
         onTap: () => {
           onNewFacility(
             NewFacility(
+              name: facility.name,
               type: facility.type,
               sport: facility.sport,
               description: facility.description,

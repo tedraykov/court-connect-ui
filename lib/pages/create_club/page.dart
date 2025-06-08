@@ -41,7 +41,7 @@ class _CreateClubPageState extends State<CreateClubPage> {
   }
 
   void handleGeneralInfoChange(NewClub club) {
-    final isValid = club.name.isNotEmpty && club.address.isNotEmpty;
+    final isValid = club.name.isNotEmpty && club.address.isNotEmpty && club.city.isNotEmpty;
     setState(() {
       this.club = club;
       // Assuming the first step is valid when name and address are filled

@@ -1,6 +1,7 @@
-import 'package:court_connect_app/pages/create_club/page.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+
+import 'pages/home/page.dart';
 
 
 void main() async {
@@ -22,13 +23,11 @@ class CourtConnectApp extends StatelessWidget {
       ),
     );
 
-    final textTheme = Theme.of(context).textTheme;
-
     return GraphQLProvider(
       client: client,
       child: MaterialApp(
         title: 'Court Connect',
-        home: CreateClubPage(),
+        home: HomePage(),
         theme: ThemeData(
           textTheme: TextTheme(
             titleLarge: TextStyle(fontWeight: FontWeight.bold),

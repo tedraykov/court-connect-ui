@@ -956,6 +956,7 @@ class _CopyWithImpl$Mutation$createGame$createGame<TRes>
         startTime: startTime == _undefined || startTime == null
             ? _instance.startTime
             : (startTime as int),
+        endTime: endTime == _undefined || endTime == null
             ? _instance.endTime
             : (endTime as int),
         organizer: organizer == _undefined

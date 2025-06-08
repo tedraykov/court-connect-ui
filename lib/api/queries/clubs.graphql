@@ -1,0 +1,13 @@
+query clubs($input: ClubFilterInput) {
+  clubs(input: $input) {
+    id
+    name
+    city
+    address
+    facilities {
+      name
+      type
+      sport
+    }
+  }
+}
