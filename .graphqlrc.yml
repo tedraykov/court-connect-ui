@@ -1,0 +1,5 @@
+schema: 'lib/api/schema.graphql'
+documents:
+  - 'lib/api/mutations/*.graphql'
+  - 'lib/api/queries/*.graphql'
+  - 'lib/api/fragments/*.graphql'

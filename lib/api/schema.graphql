@@ -1,0 +1,162 @@
+scalar Time
+scalar Uint
+
+type Player {
+  id: ID!
+  name: String!
+  email: String!
+  phone: String
+}
+
+type Game {
+  id: ID!
+  date: Time!
+  startTime: Uint!
+  endTime: Uint!
+  organizer: Player
+  sport: Sport!
+  gameFormat: GameFormat!
+  teams: [Team!]!
+  level: Level!
+  booking: Booking
+  club: Club
+  facility: Facility
+}
+
+type Booking {
+  id: ID!
+  date: Time!
+  startTime: Uint!
+  endTime: Uint!
+  owner: Player!
+  club: Club!
+  facility: Facility!
+}
+
+type Team {
+  id: ID!
+  players: [TeamPlayerSlot!]!
+  score: Int
+  name: String
+}
+
+type TeamPlayerSlot {
+  id: ID!
+  player: Player
+  name: String
+}
+
+type Club {
+  id: ID!
+  name: String!
+  address: String!
+  city: String!
+  openHours: [ClubOpenHours!]!
+  facilities: [Facility!]!
+}
+
+enum FacilityType {
+  COURT
+}
+
+enum Sport {
+  TENNIS
+  PADEL
+}
+
+enum GameFormat {
+  SINGLES
+  DOUBLES
+}
+
+type Facility {
+  id: ID!
+  name: String!
+  club: Club!
+  type: FacilityType!
+  sport: Sport!
+}
+
+type ClubOpenHours {
+  # Day of the week, e.g., "Monday", "Tuesday", etc.
+  day: String!
+  # Opening and closing times for the Facility
+  openTime: Uint!
+  closeTime: Uint!
+  # Interval in minutes for booking the Facility for example, 30 minutes or 60 minutes
+  minimumBookingInterval: Uint!
+  # Optional field to specify the date for the open hours, if applicable. This should be used for special events or holidays.
+  date: Time
+}
+
+input ClubFilterInput {
+  sport: Sport
+  city: String
+}
+
+type Query {
+  games: [Game!]!
+  clubDailyBookings(clubID: ID!, date: Time!): [Game!]!
+  clubs(input: ClubFilterInput): [Club!]!
+  facilities: [Facility!]!
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+input NewGame {
+  date: Time!
+  startTime: Uint!
+  endTime: Uint!
+  level: Level!
+  sport: Sport!
+  gameFormat: GameFormat!
+  clubID: ID
+  facilityID: ID
+}
+
+input FacilityInput {
+  name: String!
+  type: FacilityType!
+  sport: Sport!
+}
+
+input ClubOpenHoursInput {
+  # Day of the week, e.g., "Monday", "Tuesday", etc.
+  day: String!
+  openTime: Uint!
+  closeTime: Uint!
+  # Interval in minutes for booking the Facility, e.g., 30 minutes or 60 minutes
+  minimumBookingInterval: Uint!
+  # Optional field to specify the date for the open hours, if applicable. This should be used for special events or holidays.
+  date: Time
+}
+
+input NewClub {
+  name: String!
+  address: String!
+  city: String!
+  openHours: [ClubOpenHoursInput!]!
+  facilities: [FacilityInput!]!
+}
+
+input NewPlayer {
+  name: String!
+  email: String!
+  phone: String
+}
+
+input JoinGameInput {
+  teamID: ID!
+  playerID: ID!
+}
+
+type Mutation {
+  onboardClub(input: NewClub!): Club!
+  createGame(input: NewGame!): Game!
+  joinGame(input: JoinGameInput!): Game!
+  addPlayer(input: NewPlayer!): Player!
+}

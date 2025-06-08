@@ -1,0 +1,27 @@
+mutation createGame($input: NewGame!) {
+  createGame(input: $input) {
+    id
+    date
+    startTime
+    endTime
+    organizer {
+      id
+    }
+    sport
+    gameFormat
+    teams {
+      score
+      players {
+        name
+      }
+    }
+    level
+    club {
+      id
+      name
+    }
+    facility {
+      name
+    }
+  }
+}

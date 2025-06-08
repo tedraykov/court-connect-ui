@@ -1,0 +1,6 @@
+mutation onboardClub($input: NewClub!) {
+  onboardClub(input: $input) {
+    name
+    id
+  }
+}
